@@ -1,0 +1,79 @@
+import { useState } from "react";
+import "./Navbar.css";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { FaYoutube } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
+import { MdOutlineKeyboardVoice } from "react-icons/md";
+import { MdOutlineVideoCall } from "react-icons/md";
+import { FaBell } from "react-icons/fa";
+import { IoMdPerson } from "react-icons/io";
+
+{
+  /* <IoMdPerson /> */
+}
+
+function Navbar({setSideNavbarFunction, sideNavbar}) {
+  const [userPic, setUserPic] = useState(
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQu4TUtAk_tgrdgaKzCjHKehGKvBynfcxd9GA&s"
+  );
+  const [navbarModel, setNavbarModel] = useState(false);
+
+  function handleClickModel(){
+    setNavbarModel(prev => !prev)
+  }
+
+  const sideNavbarFunc = () => {
+    setSideNavbarFunction(!sideNavbar)
+  }
+
+  return (
+    <div className="navbar">
+      <div className="navbar-left">
+        <div className="navbarHanmberger" onClick={sideNavbarFunc}>
+          <RxHamburgerMenu color="white" />
+        </div>
+
+        <div className="navbar_youtubeImg">
+          <FaYoutube className="navbar_youtubeImage" />
+          <div className="navbar_utubeTitle">Youtube</div>
+        </div>
+      </div>
+
+      <div className="navbar-middle">
+        <div className="navbar_searchBox">
+          <input
+            type="text"
+            placeholder="Search"
+            className="navbar_searchBoxInput"
+          />
+          <div className="navbar_searchIconBox">
+            <FaSearch color="white" fontSize={"25px"} />
+          </div>
+
+          <div className="navbar_mike">
+            <MdOutlineKeyboardVoice color="white" />
+          </div>
+        </div>
+      </div>
+
+      <div className="navbar-right">
+        <MdOutlineVideoCall
+          fontSize={"30px"}
+          cursor={"pointer"}
+          color="white"
+        />
+        <FaBell fontSize={"30px"} cursor={"pointer"} color="white" />
+        <img onClick={handleClickModel} src={`${userPic}`} alt="Logo" className="navbar-right-logo" />
+
+        {navbarModel && (
+          <div className="navbar-model">
+            <div className="navbar-model-option">Profile</div>
+            <div className="navbar-model-option">Logout</div>
+            <div className="navbar-model-option">Login</div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+export default Navbar;

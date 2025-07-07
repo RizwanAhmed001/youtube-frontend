@@ -1,0 +1,370 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+.navbar{
+  height: 56px;
+  box-sizing: border-box;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  top: 0;
+  position: fixed;
+  background-color: black;
+  z-index: 10;
+}
+.navbar-left{
+  gap: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+}
+.navbarHamberger{
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.navbar_youtubeImg{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+}
+.navbar_youtubeImage{
+  color: red;
+  font-size: 34px;
+}
+.navbar_utubeTitle{
+  font-size: 20px;
+  word-spacing: 0px;
+  letter-spacing: 0px;
+  font-family: "Lora", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+
+
+
+
+.navbar-middle{
+  display: flex;
+  gap: 10px;
+  width: 50%;
+}
+.navbar_searchBox{
+  width: 80%;
+  display: flex;
+}
+.navbar_searchBoxInput{
+  width: 100%;
+  height: 40px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border: 1px solid rgb(58, 57, 57);
+  background-color: #121212;
+  color: white;
+  font-size: 16px;
+  padding-left: 30px;
+  &:focus{
+    outline: none;
+  }
+  &::placeholder{
+    font-size: 16px;
+  }
+}
+.navbar_searchIconBox{
+  cursor: pointer;
+  width: 70px;
+  border: 1px solid rgb(42, 42, 42);
+  background-color: rgb(42, 42, 42);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.navbar_mike{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(42,42,42);
+  border-radius: 50%;
+  width: 50px;
+  margin-left: 5px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.navbar-right{
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.navbar-right-logo{
+  width: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.navbar-model{
+  position: absolute;
+  top: 35px;
+  width: 100%;
+  z-index: 20;
+  color: white;
+}
+
+.navbar-model-option{
+  background-color: rgb(85, 85, 85);
+  padding: 10px;
+  cursor: pointer;
+  &:hover{
+    background-color: rgb(34, 33, 33)
+  }
+} */
+
+
+/* Above one delete after project done */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+
+.navbar {
+  height: 56px;
+  box-sizing: border-box;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  top: 0;
+  position: fixed;
+  background-color: black;
+  z-index: 10;
+  flex-wrap: nowrap;
+  overflow: visible;
+}
+
+.navbar-left {
+  gap: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  flex-shrink: 0;
+}
+
+.navbarHamberger {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.navbar_youtubeImg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+}
+
+.navbar_youtubeImage {
+  color: red;
+  font-size: 34px;
+}
+
+.navbar_utubeTitle {
+  font-size: 20px;
+  word-spacing: 0px;
+  letter-spacing: 0px;
+  font-family: "Lora", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  white-space: nowrap;
+}
+
+
+.navbar-middle {
+  display: flex;
+  gap: 10px;
+  width: 50%;
+  justify-content: center;
+  align-items: center;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.navbar_searchBox {
+  width: 80%;
+  display: flex;
+  max-width: 100%;
+}
+
+.navbar_searchBoxInput {
+  width: 100%;
+  height: 40px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border: 1px solid rgb(58, 57, 57);
+  background-color: #121212;
+  color: white;
+  font-size: 16px;
+  padding-left: 30px;
+  min-width: 0;
+}
+
+.navbar_searchBoxInput:focus {
+  outline: none;
+}
+
+.navbar_searchBoxInput::placeholder {
+  font-size: 16px;
+}
+
+.navbar_searchIconBox {
+  cursor: pointer;
+  width: 70px;
+  border: 1px solid rgb(42, 42, 42);
+  background-color: rgb(42, 42, 42);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  flex-shrink: 0;
+}
+
+.navbar_mike {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(42, 42, 42);
+  border-radius: 50%;
+  width: 50px;
+  height: 40px;
+  margin-left: 5px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+
+.navbar-right {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.navbar-right-logo {
+  width: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+
+.navbar-model {
+  position: absolute;
+  top: 35px;
+  width: 100%;
+  z-index: 20;
+  color: white;
+}
+
+.navbar-model-option {
+  background-color: rgb(85, 85, 85);
+  padding: 10px;
+  cursor: pointer;
+}
+
+.navbar-model-option:hover {
+  background-color: rgb(34, 33, 33);
+}
+
+
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 8px 12px;
+  }
+
+  .navbar_youtubeImage {
+    font-size: 28px;
+  }
+
+  .navbar_utubeTitle {
+    font-size: 16px;
+  }
+
+  .navbar_searchBoxInput {
+    font-size: 14px;
+    padding-left: 16px;
+  }
+
+  .navbar_searchBoxInput::placeholder {
+    font-size: 14px;
+  }
+
+  .navbar_searchIconBox {
+    width: 50px;
+  }
+
+  .navbar_mike {
+    width: 40px;
+    height: 36px;
+  }
+
+  .navbar-right-logo {
+    width: 26px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar_utubeTitle {
+    display: none;
+  }
+
+  .navbar_searchBox {
+    width: 100%;
+  }
+
+  .navbar_searchBoxInput {
+    font-size: 13px;
+    padding-left: 12px;
+  }
+
+  .navbar_searchBoxInput::placeholder {
+    font-size: 13px;
+  }
+
+  .navbar_searchIconBox {
+    width: 40px;
+  }
+
+  .navbar_mike {
+    display: none;
+  }
+
+  .navbar-right-logo {
+    width: 24px;
+  }
+
+  .navbar-model-option {
+    font-size: 14px;
+  }
+}
