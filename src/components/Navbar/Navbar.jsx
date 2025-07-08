@@ -8,6 +8,12 @@ import { MdOutlineVideoCall } from "react-icons/md";
 import { FaBell } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { IoMdPerson } from "react-icons/io";
+import { FaGoogle } from "react-icons/fa";
+import { MdOutlineSwitchAccount } from "react-icons/md";
+import { VscSignOut } from "react-icons/vsc";
+import { FaCircleDollarToSlot } from "react-icons/fa6";
+import { IoIosLogIn } from "react-icons/io";
+import Login from "../Login/Login";
 
 {
   /* <IoMdPerson /> */
@@ -22,6 +28,8 @@ function Navbar({setSideNavbarFunction, sideNavbar}) {
   );
   const [navbarModel, setNavbarModel] = useState(false);
 
+  const [login, setLogin] = useState(false);
+
   function handleClickModel(){
     setNavbarModel(prev => !prev)
   }
@@ -33,6 +41,20 @@ function Navbar({setSideNavbarFunction, sideNavbar}) {
   const handleProfile =() => {
     navigate("/user/1")
     setNavbarModel(false)
+  }
+
+  const setLoginModel = () => {
+    setLogin(false)
+  }
+
+  const onClickOfPopUpOption = (button) => {
+    setNavbarModel(false)
+    if(button == "login"){
+      setLogin(true);
+    }
+    else{
+
+    }
   }
 
   return (
@@ -76,12 +98,19 @@ function Navbar({setSideNavbarFunction, sideNavbar}) {
 
         {navbarModel && (
           <div className="navbar-model">
-            <div className="navbar-model-option" onClick={handleProfile}>Profile</div>
-            <div className="navbar-model-option">Logout</div>
-            <div className="navbar-model-option">Login</div>
+            <div className="navbar-model-option" onClick={handleProfile}>View Profile</div>
+            <div className="navbar-model-option" onClick={() => onClickOfPopUpOption("login")}><IoIosLogIn /> &nbsp; Login</div>
+            <div className="navbar-model-option"><FaGoogle /> &nbsp; Google </div>
+            <div className="navbar-model-option"><MdOutlineSwitchAccount /> &nbsp; Switch</div>
+            <div className="navbar-model-option" onClick={() => onClickOfPopUpOption("logout")}><VscSignOut />  &nbsp; Logout </div>
+            <div className="navbar-model-option"><FaCircleDollarToSlot /> &nbsp; Puchase </div>
           </div>
         )}
       </div>
+
+      {
+        login && <Login setLoginModel={setLoginModel} />
+      }
     </div>
   );
 }
