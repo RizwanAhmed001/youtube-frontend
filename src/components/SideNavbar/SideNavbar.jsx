@@ -18,12 +18,12 @@ function SideNavbar({sideNavbar}) {
 
       <div className="home_sideNavbarTop">
 
-        <div className={`home_sideNavbarTopOption`}>
+        <Link to="/" className={`home_sideNavbarTopOption`}>
             <FaHome />
             <div className="home_sideNavbarTopOptionTitle">
-              <Link className="homeLink" to="/">Home</Link>
+              <div className="homeLink">Home</div>
             </div>
-        </div>
+        </Link>
 
         <div className={`home_sideNavbarTopOption`}>
             <IoMdVideocam />

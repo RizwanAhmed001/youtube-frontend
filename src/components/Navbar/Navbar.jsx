@@ -6,6 +6,7 @@ import { FaSearch } from "react-icons/fa";
 import { MdOutlineKeyboardVoice } from "react-icons/md";
 import { MdOutlineVideoCall } from "react-icons/md";
 import { FaBell } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
 import { IoMdPerson } from "react-icons/io";
 
 {
@@ -13,6 +14,9 @@ import { IoMdPerson } from "react-icons/io";
 }
 
 function Navbar({setSideNavbarFunction, sideNavbar}) {
+
+  const navigate = useNavigate();
+
   const [userPic, setUserPic] = useState(
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQu4TUtAk_tgrdgaKzCjHKehGKvBynfcxd9GA&s"
   );
@@ -26,6 +30,11 @@ function Navbar({setSideNavbarFunction, sideNavbar}) {
     setSideNavbarFunction(!sideNavbar)
   }
 
+  const handleProfile =() => {
+    navigate("/user/1")
+    setNavbarModel(false)
+  }
+
   return (
     <div className="navbar">
       <div className="navbar-left">
@@ -33,10 +42,10 @@ function Navbar({setSideNavbarFunction, sideNavbar}) {
           <RxHamburgerMenu color="white" />
         </div>
 
-        <div className="navbar_youtubeImg">
+        <Link to="/" className="navbar_youtubeImg">
           <FaYoutube className="navbar_youtubeImage" />
           <div className="navbar_utubeTitle">Youtube</div>
-        </div>
+        </Link>
       </div>
 
       <div className="navbar-middle">
@@ -67,7 +76,7 @@ function Navbar({setSideNavbarFunction, sideNavbar}) {
 
         {navbarModel && (
           <div className="navbar-model">
-            <div className="navbar-model-option">Profile</div>
+            <div className="navbar-model-option" onClick={handleProfile}>Profile</div>
             <div className="navbar-model-option">Logout</div>
             <div className="navbar-model-option">Login</div>
           </div>

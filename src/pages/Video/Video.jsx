@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./Video.css";
 import { MdOutlineThumbUp } from "react-icons/md";
 import { MdOutlineThumbDown } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 function Video() {
   const [likes, setLikes] = useState(12);
@@ -18,6 +19,7 @@ function Video() {
   return (
     <>
       <div className="video">
+
 
         <div className="videoPostSection">
           <div className="video_youtube">
@@ -39,13 +41,13 @@ function Video() {
             <div className="video_uTubeTitle">{"Cartoon for childrens"}</div>
             <div className="youtube_video_ProfileBlock">
               <div className="youtube_video_ProfileBlock_left">
-                <div className="youtube_video_ProfileBlock_left_img">
+                <Link to="/user/1" className="youtube_video_ProfileBlock_left_img">
                   <img
                     src="https://images.unsplash.com/photo-1743376272672-c130603a3af2?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw1fHx8ZW58MHx8fHx8"
                     alt=""
                     className="youtube_video_ProfileBlock_left_Image"
                   />
-                </div>
+                </Link>
 
                 <div className="youtubeVideo_susView">
                   <div className="youtubePostProfileName">{"User1"}</div>

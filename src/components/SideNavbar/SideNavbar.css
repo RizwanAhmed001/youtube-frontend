@@ -30,6 +30,8 @@
 .home_sideNavbarTopOption{
   display: flex;
   gap: 20px;
+  text-decoration: none;
+  color: white;
   align-items: center;
   padding: 9px 10px;
   border-radius: 15px;
@@ -63,5 +65,12 @@
   height: 25px;
   border-radius: 50%;
 }
-
+/* Hide sidebar on screens below 800px */
+@media (max-width: 800px) {
+  .home-sideNavbar,
+  .home_sideNavbarTop,
+  .home_sideNavbarMiddle {
+    display: none !important;
+  }
+}
 
