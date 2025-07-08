@@ -10,6 +10,7 @@ import { MdOutlineVideoLibrary } from "react-icons/md";
 import { MdWatchLater } from "react-icons/md";
 import { MdThumbUpAlt } from "react-icons/md";
 import { FaScissors } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 function SideNavbar({sideNavbar}) {
   return (
@@ -19,7 +20,9 @@ function SideNavbar({sideNavbar}) {
 
         <div className={`home_sideNavbarTopOption`}>
             <FaHome />
-            <div className="home_sideNavbarTopOptionTitle">Home</div>
+            <div className="home_sideNavbarTopOptionTitle">
+              <Link className="homeLink" to="/">Home</Link>
+            </div>
         </div>
 
         <div className={`home_sideNavbarTopOption`}>
