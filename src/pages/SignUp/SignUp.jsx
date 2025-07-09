@@ -1,8 +1,41 @@
 import { Link } from "react-router-dom";
 import "./SignUp.css";
 import { FaYoutube } from "react-icons/fa";
+import { useState } from "react";
+import axios from "axios"
 
 function SignUp() {
+  const [uploadedImageUrl, setUploadedImageUrl] = useState("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-UmaM-m5wwp4Ixwbx7YXqBMMGvpFXEdo1aw&s")
+  const [signUpField, setSignUpField] = useState({"userName": "", "email": "", "password": "", "about": "", "profilePic": uploadedImageUrl})
+
+  const handleInputFields = (event, name) => {
+    setSignUpField({
+      ...signUpField, [name]: event.target.value
+    })
+  }
+  console.log(signUpField)
+
+  const uploadImage = async (e) => {
+    const files = e.target.files
+    const data = new FormData();
+    data.append("file", files[0])
+    data.append("upload_preset", "youtube-clone")
+    try{
+      // cloudName = "davnbpk0m"
+      const response = await axios.post("https://api.cloudinary.com/v1_1/davnbpk0m/image/upload", data);
+      const imageUrl = response.data.url;
+      setUploadedImageUrl(imageUrl)
+      setSignUpField({
+      ...signUpField, "profilePic": imageUrl
+    })
+    }catch(err){
+      console.log(err)
+    }
+
+  }
+
+
+
   return (
     <>
       <div className="signUp">
@@ -13,16 +46,25 @@ function SignUp() {
           </div>
 
           <div className="signUp_Inputs">
-            <input type="text" className="signUp_Inputs_inp" placeholder="Channel Name" />
-            <input type="text" className="signUp_Inputs_inp" placeholder="User Name" />
-            <input type="text" className="signUp_Inputs_inp" placeholder="Password" />
-            <input type="text" className="signUp_Inputs_inp" placeholder="About Your Channel" />
+
+            <input type="text" onChange={(e) => {handleInputFields(e, "userName")}} className="signUp_Inputs_inp" value={signUpField.userName} placeholder="User Name" />
+
+            <input type="email" onChange={(e) => {handleInputFields(e, "email")}} className="signUp_Inputs_inp" value={signUpField.email} placeholder="Email" />
+
+            <input type="password" onChange={(e) => {handleInputFields(e, "password")}} className="signUp_Inputs_inp" value={signUpField.password} placeholder="Password" />
+
+            <input type="text" onChange={(e) => {handleInputFields(e, "about")}} className="signUp_Inputs_inp" value={signUpField.about} placeholder="About You" />
 
             <div className="image_upload_signup">
-              <input type="file" />
+
+              <input type="file" onChange={(e) => uploadImage(e)} />
+
               <div className="image_upload_signup_div">
-                <img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-UmaM-m5wwp4Ixwbx7YXqBMMGvpFXEdo1aw&s"} className="image_default_signUp" alt="File" />
+
+                <img src={uploadedImageUrl} className="image_default_signUp" alt="File" />
+
               </div>
+
             </div>
 
             <div className="signUpBtns">

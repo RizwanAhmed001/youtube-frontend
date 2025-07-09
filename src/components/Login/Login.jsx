@@ -5,7 +5,12 @@ import { useState } from "react";
 
 function Login({setLoginModel}){
 
-  const [loginField, setLoginField] = useState({"userName": "", "password": ""})
+  const [loginField, setLoginField] = useState({"email": "", "password": ""})
+  const handleOnChangeInput = (event, name) => {
+    setLoginField({
+      ...loginField, [name]: event.target.value
+    })
+  }
 
   return(
     <>
@@ -17,10 +22,10 @@ function Login({setLoginModel}){
         </div>
         <div className="loginCredentials">
           <div className="userNameLogin">
-            <input type="text" name="userName" id="userName" placeholder="UserName" className="userNameLoginUserName" />
+            <input type="email" name="email" onChange={(e) => {handleOnChangeInput(e, "email")}} value={loginField.email} id="email" placeholder="Email" className="userNameLoginUserName" />
           </div>
           <div className="userNameLogin">
-            <input type="text" name="userName" value={loginField.userName} id="userName" placeholder="Password" className="userNameLoginUserName" />
+            <input type="password" name="password" onChange={(e) => {handleOnChangeInput(e, "password")}} value={loginField.password} id="password" placeholder="Password" className="userNameLoginUserName" />
           </div>
         </div>
         

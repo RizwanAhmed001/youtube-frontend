@@ -19,8 +19,7 @@ import Login from "../Login/Login";
   /* <IoMdPerson /> */
 }
 
-function Navbar({setSideNavbarFunction, sideNavbar}) {
-
+function Navbar({ setSideNavbarFunction, sideNavbar }) {
   const navigate = useNavigate();
 
   const [userPic, setUserPic] = useState(
@@ -30,32 +29,30 @@ function Navbar({setSideNavbarFunction, sideNavbar}) {
 
   const [login, setLogin] = useState(false);
 
-  function handleClickModel(){
-    setNavbarModel(prev => !prev)
+  function handleClickModel() {
+    setNavbarModel((prev) => !prev);
   }
 
   const sideNavbarFunc = () => {
-    setSideNavbarFunction(!sideNavbar)
-  }
+    setSideNavbarFunction(!sideNavbar);
+  };
 
-  const handleProfile =() => {
-    navigate("/user/1")
-    setNavbarModel(false)
-  }
+  const handleProfile = () => {
+    navigate("/user/1");
+    setNavbarModel(false);
+  };
 
   const setLoginModel = () => {
-    setLogin(false)
-  }
+    setLogin(false);
+  };
 
   const onClickOfPopUpOption = (button) => {
-    setNavbarModel(false)
-    if(button == "login"){
+    setNavbarModel(false);
+    if (button == "login") {
       setLogin(true);
+    } else {
     }
-    else{
-
-    }
-  }
+  };
 
   return (
     <div className="navbar">
@@ -88,29 +85,53 @@ function Navbar({setSideNavbarFunction, sideNavbar}) {
       </div>
 
       <div className="navbar-right">
-        <MdOutlineVideoCall
-          fontSize={"30px"}
-          cursor={"pointer"}
-          color="white"
-        />
+        <Link to={"/1/upload"}>
+          <MdOutlineVideoCall
+            fontSize={"30px"}
+            cursor={"pointer"}
+            color="white"
+          />
+        </Link>
+
         <FaBell fontSize={"30px"} cursor={"pointer"} color="white" />
-        <img onClick={handleClickModel} src={`${userPic}`} alt="Logo" className="navbar-right-logo" />
+        <img
+          onClick={handleClickModel}
+          src={`${userPic}`}
+          alt="Logo"
+          className="navbar-right-logo"
+        />
 
         {navbarModel && (
           <div className="navbar-model">
-            <div className="navbar-model-option" onClick={handleProfile}>View Profile</div>
-            <div className="navbar-model-option" onClick={() => onClickOfPopUpOption("login")}><IoIosLogIn /> &nbsp; Login</div>
-            <div className="navbar-model-option"><FaGoogle /> &nbsp; Google </div>
-            <div className="navbar-model-option"><MdOutlineSwitchAccount /> &nbsp; Switch</div>
-            <div className="navbar-model-option" onClick={() => onClickOfPopUpOption("logout")}><VscSignOut />  &nbsp; Logout </div>
-            <div className="navbar-model-option"><FaCircleDollarToSlot /> &nbsp; Puchase </div>
+            <div className="navbar-model-option" onClick={handleProfile}>
+              View Profile
+            </div>
+            <div
+              className="navbar-model-option"
+              onClick={() => onClickOfPopUpOption("login")}
+            >
+              <IoIosLogIn /> &nbsp; Login
+            </div>
+            <div className="navbar-model-option">
+              <FaGoogle /> &nbsp; Google{" "}
+            </div>
+            <div className="navbar-model-option">
+              <MdOutlineSwitchAccount /> &nbsp; Switch
+            </div>
+            <div
+              className="navbar-model-option"
+              onClick={() => onClickOfPopUpOption("logout")}
+            >
+              <VscSignOut /> &nbsp; Logout{" "}
+            </div>
+            <div className="navbar-model-option">
+              <FaCircleDollarToSlot /> &nbsp; Puchase{" "}
+            </div>
           </div>
         )}
       </div>
 
-      {
-        login && <Login setLoginModel={setLoginModel} />
-      }
+      {login && <Login setLoginModel={setLoginModel} />}
     </div>
   );
 }

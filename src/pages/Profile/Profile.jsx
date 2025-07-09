@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 function Profile({ sideNavbar }) {
   return (
     <>
-      <dic className="profile">
+      <div className="profile">
         <SideNavbar sideNavbar={sideNavbar} />
 
         <div className={sideNavbar ?`profile_page` : `profile_page_inactive`}>
@@ -94,7 +94,7 @@ function Profile({ sideNavbar }) {
             </div>
           </div>
         </div>
-      </dic>
+      </div>
     </>
   );
 }

@@ -29,9 +29,7 @@ function HomePage({sideNavbar}) {
       <div className="homePage_options">
         {options.map((item, index) => {
           return (
-            <>
               <div key={index} className="homePage_option">{item}</div>
-            </>
           );
         })}
       </div>

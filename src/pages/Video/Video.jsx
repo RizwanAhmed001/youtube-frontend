@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 function Video() {
   const [likes, setLikes] = useState(12);
   const [dislikes, setDislikes] = useState(2);
+  const [message, setMessage] = useState("")
+  console.log(message)
 
   function handleDislike() {
     setDislikes((prev) => prev + 1);
@@ -99,6 +101,8 @@ function Video() {
                 <div className="addAComment">
                   <input
                     type="text"
+                    value={message}
+                    onChange={(e) => {setMessage(e.target.value)}}
                     className="addACommentInput"
                     placeholder="Add a Comment"
                   />
