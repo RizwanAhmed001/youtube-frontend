@@ -8,9 +8,12 @@ import Profile from './pages/Profile/Profile'
 import SideNavbar from './components/SideNavbar/SideNavbar'
 import SignUp from './pages/SignUp/SignUp'
 import VideoUpload from './pages/videoUpload/videoUpload'
+import axios from 'axios'
+import { useEffect } from 'react'
 
 function App() {
   const [sideNavbar, setSideNavbar] = useState(true)
+  const [search, setSearch] = useState("")
 
   const setSideNavbarFunction = (value) => {
     setSideNavbar(value)
@@ -18,9 +21,9 @@ function App() {
 
   return (
     <>
-      <Navbar setSideNavbarFunction={setSideNavbarFunction} sideNavbar={sideNavbar} />
+      <Navbar setSearch={setSearch} setSideNavbarFunction={setSideNavbarFunction} sideNavbar={sideNavbar} />
       <Routes>
-        <Route path="/" element={<Home sideNavbar={sideNavbar}/>}></Route>
+        <Route path="/" element={<Home search={search} sideNavbar={sideNavbar}/>}></Route>
         <Route path="/watch/:id" element={<Video />}></Route>
         <Route path="/user/:id" element={<Profile sideNavbar={sideNavbar}  />}></Route>
         <Route path="/:id/upload" element={<VideoUpload/>}></Route>

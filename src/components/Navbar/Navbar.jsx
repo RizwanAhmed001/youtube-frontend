@@ -19,7 +19,7 @@ import Login from "../Login/Login";
   /* <IoMdPerson /> */
 }
 
-function Navbar({ setSideNavbarFunction, sideNavbar }) {
+function Navbar({ setSearch, setSideNavbarFunction, sideNavbar }) {
   const navigate = useNavigate();
 
   const [userPic, setUserPic] = useState(
@@ -70,6 +70,7 @@ function Navbar({ setSideNavbarFunction, sideNavbar }) {
       <div className="navbar-middle">
         <div className="navbar_searchBox">
           <input
+          onChange={(e) => {setSearch(e.target.value)}}
             type="text"
             placeholder="Search"
             className="navbar_searchBoxInput"
