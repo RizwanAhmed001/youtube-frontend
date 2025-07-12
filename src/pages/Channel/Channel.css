@@ -1,0 +1,84 @@
+.channel{
+  background-color: black;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+.channelFormContainer {
+  margin: 50px;
+  background-color: #181818;  /* Dark background */
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  width: 50%;
+  color: #f1f1f1;
+}
+
+.channelForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.channelForm h2 {
+  margin-bottom: 10px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.channelForm label {
+  font-weight: 500;
+  color: #cccccc;
+}
+
+.channelForm input,
+.channelForm textarea {
+  padding: 10px;
+  background-color: #2c2c2c;
+  color: #f1f1f1;
+  border: 1px solid #555;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.channelForm textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.channelForm input::placeholder,
+.channelForm textarea::placeholder {
+  color: #aaaaaa;
+}
+
+.channelForm button {
+  padding: 10px 16px;
+  background-color: #065fd4;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.channelForm button:hover {
+  background-color: #054bb6;
+}
+
+/* Optional: Image preview style */
+.channelForm img.previewImage {
+  width: 100%;
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+
+/* Responsive for small screens */
+@media (max-width: 600px) {
+  .channelFormContainer {
+    margin: 20px;
+    padding: 16px;
+  }
+}

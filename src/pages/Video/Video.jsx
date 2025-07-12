@@ -8,8 +8,11 @@ import { useEffect } from "react";
 import axios from "axios";
 
 function Video() {
+  // yet to make logic
   const [likes, setLikes] = useState();
   const [dislikes, setDislikes] = useState();
+
+
   const [message, setMessage] = useState("");
   const [data, setData] = useState(null);
   const [videoUrl, setVideoUrl] = useState("");
@@ -18,10 +21,10 @@ function Video() {
 
   const fetchVideoById = async () => {
     await axios
-      .get(`http://localhost:4000/api/getVideoById/${id}`)
+      .get(`http://localhost:4000/api/getVideoById/${id}`, {withCredentials: true})
       .then((response) => {
         setData(response.data.video);
-        setVideoUrl(response?.data?.video?.videoLink);
+        setVideoUrl(response.data.video?.videoLink);
       })
       .catch((err) => {
         console.log(err);
@@ -75,11 +78,11 @@ function Video() {
             <div className="youtube_video_ProfileBlock">
               <div className="youtube_video_ProfileBlock_left">
                 <Link
-                  to={`/user/${data?.channel._id}`}
+                  to={`/user/${data?.user._id}`}
                   className="youtube_video_ProfileBlock_left_img"
                 >
                   <img
-                    src={data?.channel.channelPic}
+                    src={data?.user.profilePic}
                     alt="userImage"
                     className="youtube_video_ProfileBlock_left_Image"
                   />

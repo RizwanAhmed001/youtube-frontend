@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./videoUpload.css";
 import { FaYoutube } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
@@ -10,12 +10,14 @@ function VideoUpload() {
   const [inputField, setInputField] = useState({
     title: "",
     description: "",
-    videolink: "",
+    videoLink: "",
     thumbnail: "",
     videoType: "",
   });
 
   const [loader, setLoader] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleOnChangeInput = (event, name) => {
     setInputField({
@@ -38,7 +40,7 @@ function VideoUpload() {
       );
       const url = response.data.url;
       setLoader(false);
-      let val = type === "image" ? "thumbnail" : "videolink";
+      let val = type === "image" ? "thumbnail" : "videoLink";
       setInputField({
         ...inputField,
         [val]: url,
@@ -49,7 +51,23 @@ function VideoUpload() {
     }
   };
 
-  console.log(inputField);
+  useEffect(() => {
+    let isLogin = sessionStorage.getItem("userId")
+    if(isLogin == null){
+      navigate("/")
+    }
+  })
+
+  const handleSubmitFun = async () => {
+
+    await axios.post("http://localhost:4000/api/video", inputField,{withCredentials:true}).then((res) => {
+
+      console.log(res)
+      
+    }).catch((err) => {
+      navigate("/channelForm")
+    })
+  }
 
   return (
     <>
@@ -106,7 +124,7 @@ function VideoUpload() {
           </div>
 
           <div className="uploadBtns">
-            <div className="uploadBtn-form">Upload</div>
+            <div className="uploadBtn-form" onClick={handleSubmitFun}>Upload</div>
             <Link to="/" className="uploadBtn-form">
               Home Page
             </Link>

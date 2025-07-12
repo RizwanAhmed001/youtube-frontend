@@ -9,7 +9,7 @@
 }
 
 .fullHomePage{
-   display: flex;
+  display: flex;
   flex-direction: column;
   overflow-x: hidden;
   flex: 1;
@@ -62,6 +62,7 @@
   background-color: black;
   box-sizing: border-box;
   gap: 10px;
+  min-height: 100vh;
   grid-template-columns: repeat(4, 1fr) ;
   padding: 90px 10px 20px 10px;
 }
