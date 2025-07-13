@@ -62,7 +62,7 @@ function VideoUpload() {
 
     await axios.post("http://localhost:4000/api/video", inputField,{withCredentials:true}).then((res) => {
 
-      console.log(res)
+      navigate("/")
       
     }).catch((err) => {
       navigate("/channelForm")

@@ -103,7 +103,7 @@ function HomePage({ sideNavbar, search }) {
                 <div className="youtubeTitleBox_Title">
                   <div className="youtube_videoTitle">{item.title}</div>
                   <div className="youtube_channelName">
-                    {item.channel.channelName}
+                    {item?.channel?.channelName}
                   </div>
                   <div className="youtubeVideo_views">{item.views}K Views</div>
                 </div>

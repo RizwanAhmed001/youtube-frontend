@@ -6,22 +6,24 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
 
 function Video() {
   // yet to make logic
-  const [likes, setLikes] = useState();
-  const [dislikes, setDislikes] = useState();
-
 
   const [message, setMessage] = useState("");
   const [data, setData] = useState(null);
   const [videoUrl, setVideoUrl] = useState("");
   const [comment, setComments] = useState([]);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editContent, setEdiContent] = useState("");
   const { id } = useParams();
 
   const fetchVideoById = async () => {
     await axios
-      .get(`http://localhost:4000/api/getVideoById/${id}`, {withCredentials: true})
+      .get(`http://localhost:4000/api/getVideoById/${id}`, {
+        withCredentials: true,
+      })
       .then((response) => {
         setData(response.data.video);
         setVideoUrl(response.data.video?.videoLink);
@@ -47,13 +49,91 @@ function Video() {
     getCommentByVideoId();
   }, []);
 
-  function handleDislike() {
-    setDislikes(data?.dislikes);
-  }
+  const handleDislike = async () => {
+    await axios
+      .put(
+        `http://localhost:4000/api/dislike/${id}`,
+        {}, // empty body
+        { withCredentials: true } // config goes here
+      )
+      .then((res) => {
+        window.location.reload();
+        console.log("updated");
+      })
+      .catch((err) => {
+        toast.error("Please login first to like");
+      });
+  };
 
-  function handleLike() {
-    setLikes(data?.likes);
-  }
+  const handleLike = async () => {
+    await axios
+      .put(
+        `http://localhost:4000/api/likes/${id}`,
+        {}, // empty body
+        { withCredentials: true } // config goes here
+      )
+      .then((res) => {
+        window.location.reload();
+        console.log("updated");
+      })
+      .catch((err) => {
+        toast.error("Please login first to like");
+      });
+  };
+
+  const handleComment = async () => {
+    const body = {
+      message: message,
+      video: id,
+    };
+    await axios
+      .post(`http://localhost:4000/commentApi/comment`, body, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        window.location.reload();
+      })
+      .catch((err) => {
+        toast.error("Please login first to comment");
+      });
+  };
+
+  const handleDelete = async (commentId) => {
+    await axios
+      .delete(`http://localhost:4000/commentApi/comment/${commentId}`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        window.location.reload();
+      })
+      .catch((err) => {
+        toast.error("Not Authorize to delete this comment");
+      });
+  };
+
+  const handleEdit =  (message) => {
+    setIsEditing(true);
+    setEdiContent(message);
+  };
+
+  const handleEditRequest = async (commentId) => {
+    console.log("I am commment id", commentId)
+    const body = {
+      message: editContent  // ✅ match this with what your backend expects
+    };
+    await axios.put(
+      `http://localhost:4000/commentApi/comment/${commentId}`,
+      body,
+      {
+        withCredentials: true,  // ✅ important if you're using auth via cookies
+      }
+    ).then((res) => {
+      window.location.reload()
+    }).catch((err) => {
+      toast.error("Not Authorize to edit this comment");
+    })
+
+};
 
   return (
     <>
@@ -131,7 +211,9 @@ function Video() {
             </div>
 
             <div className="yotubeCommentSection">
-              <div className="youtubeCommentSectionTitle">{comment.length} Comment</div>
+              <div className="youtubeCommentSectionTitle">
+                {comment.length} Comment
+              </div>
 
               <div className="youtubeSelfComment">
                 <img
@@ -151,7 +233,9 @@ function Video() {
                   />
                   <div className="cancelSubmitComment">
                     <div className="cancelComment">Cancel</div>
-                    <div className="cancelComment">Comment</div>
+                    <div className="cancelComment" onClick={handleComment}>
+                      Comment
+                    </div>
                   </div>
                 </div>
               </div>
@@ -159,32 +243,55 @@ function Video() {
               <div className="youtubeOthersComments">
                 {comment?.map((item, index) => {
                   return (
-                      <div key={index} className="youtubeSelfComment">
-                        <img
-                          src={item?.user.profilePic}
-                          alt="profilrPic"
-                          className="video_youtubeSelfCommentProfile"
-                        />
+                    <div key={index} className="youtubeSelfComment">
+                      <img
+                        src={item?.user.profilePic}
+                        alt="profilrPic"
+                        className="video_youtubeSelfCommentProfile"
+                      />
 
-                        <div className="others_commentSection">
-                          <div className="other_commentSectionHeader">
-                            <div className="channelName_comment">
-                              {item.user.userName}
-                            </div>
-                            <div className="commentTimingOthers">
-                              {item.user.createdAt.slice(0,10)}
-                            </div>
+                      <div className="others_commentSection">
+                        <div className="other_commentSectionHeader">
+                          <div className="channelName_comment">
+                            {item.user.userName}
                           </div>
-
-                          <div className="otherCommentSectionComment">
-                            {item?.message}
-                          </div>
-                          <div>
-                            <button className="edit">Edit</button>
-                            <button className="delete">Delete</button>
+                          <div className="commentTimingOthers">
+                            {item.user.createdAt.slice(0, 10)}
                           </div>
                         </div>
+
+                        <div className="otherCommentSectionComment">
+                          {item?.message}
+                        </div>
+                          {isEditing && (
+                            <div>
+                            <input
+                            value={editContent}
+                            className="editing"
+                            onChange={(e) => setEdiContent(e.target.value)}
+                            type="text"
+                            />
+                            <button className="cancel" onClick={() => setIsEditing(false)}>Cancel</button>
+                            <button className="add" onClick={() => handleEditRequest(item._id)}>Add</button>
+                            </div>
+                          )}
+                            <div>
+
+                          <button
+                            className="edit"
+                            onClick={() => handleEdit(item?.message)}
+                          >
+                            Edit
+                          </button>
+                          <button
+                            className="delete"
+                            onClick={() => handleDelete(item._id)}
+                          >
+                            Delete
+                          </button>
+                        </div>
                       </div>
+                    </div>
                   );
                 })}
               </div>
@@ -374,6 +481,7 @@ function Video() {
             </div>
           </div>
         </div>
+        <ToastContainer />
       </div>
     </>
   );

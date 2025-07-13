@@ -5,6 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
+import { toast, ToastContainer } from "react-toastify";
 
 function Profile({ sideNavbar }) {
   let { id } = useParams();
@@ -25,6 +26,16 @@ function Profile({ sideNavbar }) {
   useEffect(() => {
     fetchProfileData();
   }, []);
+
+
+  const handleVideoDelete = async (videoId) => {
+    await axios.delete(`http://localhost:4000/api/getChannel/${videoId}`, {withCredentials:true}).then((res) => {
+      window.location.reload();
+    }).catch((err) => {
+      console.log(err)
+      toast.error("Not Authorize to delete");
+    })
+  }
 
   return (
     <>
@@ -77,7 +88,8 @@ function Profile({ sideNavbar }) {
 
               {data.map((item, index) => {
                 return (
-                  <Link key={index} to={`/watch/${item._id}`} className="profileVideo_block">
+                  <div key={index} className="profileVideo_block">
+                    <Link to={`/watch/${item._id}`}>
                     <div className="profileVideo_block_thumbnail">
                       <img
                         src={item.thumbnail}
@@ -85,6 +97,7 @@ function Profile({ sideNavbar }) {
                         className="profileVideo_block_thumbnail_img"
                       />
                     </div>
+                    </Link>
 
                     <div className="profileVideo_block_detail">
                       <br />
@@ -94,13 +107,18 @@ function Profile({ sideNavbar }) {
                       <div className="profileVideo_block_detail_about">
                         {item.views}k . {item.createdAt.slice(0,10)}
                       </div>
+                      <div className="deleteEdit">
+                        <button className="editVideo">Edit</button>
+                        <button className="deleteVideo" onClick={() => handleVideoDelete(item._id)}>Delete</button>
+                      </div>
                     </div>
-                  </Link>
+                  </div>
                 );
               })}
             </div>
           </div>
         </div>
+         <ToastContainer />
       </div>
     </>
   );

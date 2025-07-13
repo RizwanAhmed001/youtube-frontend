@@ -161,6 +161,40 @@
   color: white;
 }
 
+.deleteEdit {
+  display: flex; 
+  gap: 10px;              /* vertical spacing between buttons */
+  align-items: flex-start; /* align buttons to left (use flex-end for right) */
+  margin-top: 10px;
+}
+
+.editVideo, .deleteVideo {
+  padding: 6px 14px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: white;
+  width: 100px; /* fixed width or adjust as needed */
+  transition: background-color 0.3s ease;
+}
+
+.editVideo {
+  background-color: #007bff; /* blue */
+}
+
+.editVideo:hover {
+  background-color: #0056b3; /* darker blue */
+}
+
+.deleteVideo {
+  background-color: #dc3545; /* red */
+}
+
+.deleteVideo:hover {
+  background-color: #a71d2a; /* darker red */
+}
+
 @media (max-width: 800px) {
   .profile_page {
     width: 100vw;

@@ -27,7 +27,6 @@ function SignUp() {
       [name]: event.target.value,
     });
   };
-  console.log(signUpField);
 
   const uploadImage = async (e) => {
     const files = e.target.files;
